@@ -52,7 +52,7 @@ class DetailDsnViewModel(
         )
 }
 
-data class DetsilDsnViewModel(
+data class DetailUiState(
     val detailUiEvent: DosenEvent = DosenEvent(),
     val isLoading: Boolean = false,
     val isError : Boolean = false,
