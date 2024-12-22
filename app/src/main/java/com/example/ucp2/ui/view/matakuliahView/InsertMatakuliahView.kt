@@ -26,16 +26,91 @@ fun FormMatakuliah(
     ){
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
+            value = matakuliahEvent.kode,
+            onValueChange = {
+                onValueChange(matakuliahEvent.copy(kode = it))
+            },
+            label = { Text("Kode") },
+            isError = errorState.kode !=null,
+            placeholder = { Text("Masukkan kode") },
+        )
+        Text(
+            text = errorState.kode ?:"",
+            color = Color.Red
+        )
+
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
             value = matakuliahEvent.nama,
             onValueChange = {
                 onValueChange(matakuliahEvent.copy(nama = it))
             },
-            label = { Text("Nama") },
+            label = { Text("Nama")},
             isError = errorState.nama !=null,
-            placeholder = { Text("Masukkan nama") },
+            placeholder = { Text("Masukkan nama")},
         )
         Text(
             text = errorState.nama ?:"",
+            color = Color.Red
+        )
+
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = matakuliahEvent.sks,
+            onValueChange = {
+                onValueChange(matakuliahEvent.copy(sks = it))
+            },
+            label = { Text("Sks")},
+            isError = errorState.sks !=null,
+            placeholder = { Text("Masukkan Sks")},
+        )
+        Text(
+            text = errorState.sks ?:"",
+            color = Color.Red
+        )
+
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = matakuliahEvent.semester,
+            onValueChange = {
+                onValueChange(matakuliahEvent.copy(semester = it))
+            },
+            label = { Text("Semester")},
+            isError = errorState.semester !=null,
+            placeholder = { Text("Masukkan semester")},
+        )
+        Text(
+            text = errorState.semester ?:"",
+            color = Color.Red
+        )
+
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = matakuliahEvent.jenis,
+            onValueChange = {
+                onValueChange(matakuliahEvent.copy(jenis = it))
+            },
+            label = { Text("Jenis")},
+            isError = errorState.jenis !=null,
+            placeholder = { Text("Masukkan jenis")},
+        )
+        Text(
+            text = errorState.jenis ?:"",
+            color = Color.Red
+        )
+
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = matakuliahEvent.dosenpengampu,
+            onValueChange = {
+                onValueChange(matakuliahEvent.copy(dosenpengampu = it))
+            },
+            label = { Text("Dosen Pengampu")},
+            isError = errorState.nama !=null,
+            placeholder = { Text("Masukkan Dosen Penampu")},
+        )
+        Text(
+            text = errorState.dosenpengampu ?:"",
             color = Color.Red
         )
     }
