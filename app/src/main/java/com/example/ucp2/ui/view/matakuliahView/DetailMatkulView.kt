@@ -1,7 +1,9 @@
 package com.example.ucp2.ui.view.matakuliahView
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -13,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ucp2.entity.Matakuliah
 
@@ -28,7 +31,22 @@ fun ItemDetailMatkul(
             contentColor = MaterialTheme.colorScheme.onPrimaryContainer
         )
     ){
-
+        Column (
+            modifier = Modifier.padding(16.dp)
+        ){
+            ComponentDetailMatkul(judul = "Kode", isinya = matakuliah.kode)
+            Spacer(modifier = Modifier.padding(4.dp))
+            ComponentDetailMatkul(judul = "Nama", isinya = matakuliah.nama)
+            Spacer(modifier = Modifier.padding(4.dp))
+            ComponentDetailMatkul(judul = "Sks", isinya = matakuliah.sks)
+            Spacer(modifier = Modifier.padding(4.dp))
+            ComponentDetailMatkul(judul = "Semester", isinya = matakuliah.semester)
+            Spacer(modifier = Modifier.padding(4.dp))
+            ComponentDetailMatkul(judul = "Jenis", isinya = matakuliah.jenis)
+            Spacer(modifier = Modifier.padding(4.dp))
+            ComponentDetailMatkul(judul = "DosenPengampu", isinya = matakuliah.dosenpengampu)
+            Spacer(modifier = Modifier.padding(4.dp))
+        }
     }
 }
 
