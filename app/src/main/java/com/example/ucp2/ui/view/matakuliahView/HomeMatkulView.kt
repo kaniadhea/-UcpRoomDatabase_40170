@@ -41,12 +41,78 @@ fun  CardMatkul(
                 Icon(imageVector = Icons.Filled.Person, contentDescription = "")
                 Spacer(modifier = Modifier.padding(4.dp))
                 Text(
+                    text = matkul.kode,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp
+                )
+
+            }
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(imageVector = Icons.Filled.Person, contentDescription = "")
+                Spacer(modifier = Modifier.padding(4.dp))
+                Text(
                     text = matkul.nama,
                     fontWeight = FontWeight.Bold,
                     fontSize = 20.sp
                 )
 
             }
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(imageVector = Icons.Filled.Person, contentDescription = "")
+                Spacer(modifier = Modifier.padding(4.dp))
+                Text(
+                    text = matkul.sks,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp
+                )
+
+            }
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(imageVector = Icons.Filled.Person, contentDescription = "")
+                Spacer(modifier = Modifier.padding(4.dp))
+                Text(
+                    text = matkul.semester,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp
+                )
+
+            }
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(imageVector = Icons.Filled.Person, contentDescription = "")
+                Spacer(modifier = Modifier.padding(4.dp))
+                Text(
+                    text = matkul.jenis,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp
+                )
+
+            }
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(imageVector = Icons.Filled.Person, contentDescription = "")
+                Spacer(modifier = Modifier.padding(4.dp))
+                Text(
+                    text = matkul.dosenpengampu,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp
+                )
+
+            }
+
 
         }
     }
