@@ -1,19 +1,51 @@
 package com.example.ucp2.ui.view.matakuliahView
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ucp2.ui.viewmodel.PenyediaViewModel
 import com.example.ucp2.ui.viewmodel.matakuliah.FormErrorState
 import com.example.ucp2.ui.viewmodel.matakuliah.MatakuliahEvent
+import com.example.ucp2.ui.viewmodel.matakuliah.MatkulUIState
+
+@Composable
+fun InsertBodyMatkul(
+    modifier: Modifier= Modifier,
+    onValueChange: (MatakuliahEvent) -> Unit,
+    uiState: MatkulUIState,
+    onClick: () -> Unit
+){
+    Column (
+        modifier = modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ){
+        FormMatakuliah(
+            matakuliahEvent = uiState.matakuliahEvent,
+            onValueChange = onValueChange,
+            errorState = uiState.isEntryValid,
+            modifier = Modifier.fillMaxWidth()
+        )
+        Button(
+            onClick = onClick,
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+            Text("Simpan")
+        }
+    }
+
+}
 
 @Composable
 fun FormMatakuliah(
