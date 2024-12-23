@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ucp2.entity.Matakuliah
 import com.example.ucp2.repository.RepositoryMatkul
-import com.example.ucp2.ui.navigation.DestinasiDetail
 import com.example.ucp2.ui.navigation.DestinasiDetailMatkul
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
@@ -67,7 +66,13 @@ data class DetailUiState(
     val isLoading: Boolean = false,
     val isError : Boolean = false,
     val errorMessage: String = ""
-)
+) {
+    val isUiEventEmpty : Boolean
+        get() = detailUiEvent == MatakuliahEvent()
+
+    val isUiEventNotEmpty: Boolean
+        get() = detailUiEvent != MatakuliahEvent()
+}
 
 
 fun Matakuliah.toDetailUiEvent() : MatakuliahEvent {
