@@ -80,7 +80,8 @@ fun UpdateMatkulView(
                             }
                         }
                     }
-                }
+                },
+                dosenList = uiState.dosenList
 
             )
         }
