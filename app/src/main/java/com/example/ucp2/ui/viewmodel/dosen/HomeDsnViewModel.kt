@@ -21,7 +21,7 @@ class HomeDsnViewModel(
         .filterNotNull()
         .map {
             HomeUiState(
-                listMhs = it.toList(),
+                listDsn = it.toList(),
                 isLoading = false,
             )
         }
@@ -48,7 +48,7 @@ class HomeDsnViewModel(
 }
 
 data class HomeUiState(
-    val listMhs: List<Dosen> = listOf(),
+    val listDsn: List<Dosen> = listOf(),
     val isLoading : Boolean = false,
     val isError: Boolean = false,
     val errorMessage : String = ""

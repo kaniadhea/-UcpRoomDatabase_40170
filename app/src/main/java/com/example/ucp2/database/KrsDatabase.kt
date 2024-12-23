@@ -5,13 +5,16 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.ucp2.dao.dosendao.DosenDao
+import com.example.ucp2.dao.matkuldao.MatakuliahDao
 import com.example.ucp2.entity.Dosen
+import com.example.ucp2.entity.Matakuliah
 
-@Database(entities = [Dosen::class], version = 1, exportSchema = false)
+@Database(entities = [Dosen::class, Matakuliah ::class], version = 1, exportSchema = false)
 abstract class KrsDatabase : RoomDatabase(){
 
     //Mendefinisikan fungsi untuk mengakses data Dosen
     abstract fun DosenDao(): DosenDao
+    abstract fun MatakuliahDao() : MatakuliahDao
 
     companion object{
         @Volatile

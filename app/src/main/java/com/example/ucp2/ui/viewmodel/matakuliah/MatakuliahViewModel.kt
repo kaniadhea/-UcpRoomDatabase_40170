@@ -5,14 +5,32 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.ucp2.entity.Dosen
 import com.example.ucp2.entity.Matakuliah
+import com.example.ucp2.repository.RepositoryDsn
 import com.example.ucp2.repository.RepositoryMatkul
 import kotlinx.coroutines.launch
 
 
-class MatakuliahViewModel(private val repositoryMatkul: RepositoryMatkul ) : ViewModel() {
+class MatakuliahViewModel(
+    private val repositoryMatkul: RepositoryMatkul,
+    private val repositoryDsn: RepositoryDsn
+) : ViewModel() {
 
     var uiState by mutableStateOf(MatkulUIState())
+        private set
+
+    var dosenList by mutableStateOf<List<Dosen>>(emptyList())
+        private set
+
+    init {
+        viewModelScope.launch {
+            repositoryDsn.getAllDsn().collect{ dosenList->
+                this@MatakuliahViewModel.dosenList = dosenList
+                updateUiState()
+            }
+        }
+    }
 
     fun updateState(matakuliahEvent: MatakuliahEvent) {
         uiState = uiState.copy(
@@ -21,7 +39,7 @@ class MatakuliahViewModel(private val repositoryMatkul: RepositoryMatkul ) : Vie
             )
     }
 
-    private fun validataFields(): Boolean {
+    fun validataFields(): Boolean {
         val event = uiState.matakuliahEvent
         val errorState = FormErrorState(
             kode = if (event.kode.isNotEmpty()) null else "Kode tidak boleh kosong",
@@ -62,12 +80,17 @@ class MatakuliahViewModel(private val repositoryMatkul: RepositoryMatkul ) : Vie
     fun resetSnackBarMessage () {
         uiState = uiState.copy(snackBarMessage = null)
     }
+
+    private fun updateUiState() {
+        uiState = uiState.copy(dosenList = dosenList)
+    }
 }
 
 data class MatkulUIState(
     val matakuliahEvent: MatakuliahEvent = MatakuliahEvent(),
     val isEntryValid: FormErrorState = FormErrorState(),
     val snackBarMessage: String? = null,
+    val dosenList: List<Dosen> = emptyList()
 )
 
 data class FormErrorState(

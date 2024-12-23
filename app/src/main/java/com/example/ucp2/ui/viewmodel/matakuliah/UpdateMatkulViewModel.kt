@@ -6,7 +6,9 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.ucp2.entity.Dosen
 import com.example.ucp2.entity.Matakuliah
+import com.example.ucp2.repository.RepositoryDsn
 import com.example.ucp2.repository.RepositoryMatkul
 import com.example.ucp2.ui.navigation.DestinasiUpdate
 import kotlinx.coroutines.flow.filterNotNull
@@ -15,9 +17,15 @@ import kotlinx.coroutines.launch
 
 class UpdateMatkulViewModel(
     savedStateHandle: SavedStateHandle,
-    private val repositoryMatkul: RepositoryMatkul
+    private val repositoryMatkul: RepositoryMatkul,
+    private val repositoryDsn: RepositoryDsn
 ) : ViewModel() {
+
+    var dosenList by mutableStateOf<List<Dosen>>(emptyList())
+        private set
     var updateUIState by mutableStateOf(MatkulUIState())
+        private set
+
     private val _kode: String = checkNotNull(savedStateHandle[DestinasiUpdate.KODE])
 
     init {
@@ -26,6 +34,12 @@ class UpdateMatkulViewModel(
                 .filterNotNull()
                 .first()
                 .toUIStateMatkul()
+        }
+            viewModelScope.launch {
+                val dosenListFromRepo = repositoryDsn.getAllDsn().first()
+                dosenList = dosenListFromRepo
+                updateUIState = updateUIState.copy(dosenList = dosenList)
+
         }
     }
     fun updateState(matakuliahEvent: MatakuliahEvent) {

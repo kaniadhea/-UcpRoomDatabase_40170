@@ -10,6 +10,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -60,6 +61,7 @@ fun DetailMatkulView(
                 onClick = {
                     onEditClick(viewModel.detailUiState.value.detailUiEvent.kode) },
                 shape = MaterialTheme.shapes.medium,
+                containerColor = Color(0xFFF8A8B6),
                 modifier = Modifier.padding(16.dp)
             ){
                 Icon (
@@ -84,18 +86,19 @@ fun DetailMatkulView(
 }
 
 @Composable
+
+
 fun BodyBetailMatkul(
     modifier: Modifier = Modifier,
     detailUiState: DetailUiState = DetailUiState(),
     onDeleteClick: () -> Unit = {}
-){
+) {
     var deleteConfirmationRequest by rememberSaveable { mutableStateOf(false) }
     when {
         detailUiState.isLoading -> {
             Box(
                 modifier = modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
-
             ) {
                 CircularProgressIndicator()
             }
@@ -116,7 +119,11 @@ fun BodyBetailMatkul(
                     onClick = {
                         deleteConfirmationRequest = true
                     },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFFF8A8B6),
+                        contentColor = Color.White
+                    )
                 ) {
                     Text(text = "Delete")
                 }
@@ -147,21 +154,22 @@ fun BodyBetailMatkul(
     }
 }
 
+
 @Composable
 fun ItemDetailMatkul(
     modifier: Modifier = Modifier,
     matakuliah: Matakuliah
-){
-    Card (
+) {
+    Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
-            contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+            containerColor = Color(0xFFF8A8B6), // Pink background color
+            contentColor = Color.White // White text color for contrast
         )
-    ){
-        Column (
+    ) {
+        Column(
             modifier = Modifier.padding(16.dp)
-        ){
+        ) {
             ComponentDetailMatkul(judul = "Kode", isinya = matakuliah.kode)
             Spacer(modifier = Modifier.padding(4.dp))
             ComponentDetailMatkul(judul = "Nama", isinya = matakuliah.nama)
@@ -177,6 +185,7 @@ fun ItemDetailMatkul(
         }
     }
 }
+
 
 
 @Composable
@@ -206,20 +215,34 @@ fun ComponentDetailMatkul(
 
 @Composable
 private fun DeleteConfirmationDialog(
-    onDeleteConfirm: () -> Unit, onDeleteCancel:() -> Unit, modifier: Modifier = Modifier
-){
-    AlertDialog(onDismissRequest = {},
-        title ={ Text("Delete Data") },
-        text ={ Text("Apakah anda yakin ingin menghapus data?") },
+    onDeleteConfirm: () -> Unit,
+    onDeleteCancel: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    AlertDialog(
+        onDismissRequest = {},
+        title = { Text("Delete Data") },
+        text = { Text("Apakah anda yakin ingin menghapus data?") },
         modifier = modifier,
         dismissButton = {
-            TextButton(onClick = onDeleteCancel) {
+            TextButton(
+                onClick = onDeleteCancel,
+                colors = ButtonDefaults.textButtonColors(
+                    contentColor = Color(0xFFF8A8B6) // Pink color for cancel button
+                )
+            ) {
                 Text(text = "Cancel")
             }
         },
         confirmButton = {
-            TextButton(onClick = onDeleteConfirm) {
+            TextButton(
+                onClick = onDeleteConfirm,
+                colors = ButtonDefaults.textButtonColors(
+                    contentColor = Color(0xFFF8A8B6) // Pink color for confirm button
+                )
+            ) {
                 Text(text = "Yes")
             }
-        })
+        }
+    )
 }
